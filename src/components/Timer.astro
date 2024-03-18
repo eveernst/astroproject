@@ -1,23 +1,73 @@
-<h1>Timer</h1>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Cambiado a negro */
+    color: #000000; /* Cambiado a blanco */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 20px; /* Aumentado el tamaño de la fuente */
+  }
 
-<style></style>
+  h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 36px; /* Aumentado el tamaño de la fuente */
+    margin-bottom: 20px; /* Aumentado el espacio inferior */
+  }
+
+  .timer-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .timer {
+    font-size: 64px; /* Aumentado el tamaño de la fuente */
+    color: #ffcc00;
+    margin-top: 10px;
+  }
+
+  .start-button {
+    padding: 15px 30px; /* Aumentado el tamaño del botón */
+    background-color: #fefa81;
+    color: #fff;
+    border: none;
+    border-radius: 8px; /* Aumentado el radio del borde */
+    cursor: pointer;
+    font-size: 20px; /* Aumentado el tamaño de la fuente */
+    transition: background-color 0.3s ease;
+  }
+
+  .start-button:hover {
+    background-color: #ffe135;
+  }
+</style>
+
+<div class="timer-container">
+  <h1>Timer</h1>
+  <div class="timer"></div>
+  <button class="start-button">Start</button>
+</div>
 
 <script>
-  const button = document.querySelector('.start-button')
-  const timer = document.querySelector('.timer')
+  const button = document.querySelector('.start-button');
+  const timer = document.querySelector('.timer');
   button?.addEventListener('click', () => {
-    let count = 60 * 5
+    let count = 60 * 5;
     const interval = setInterval(() => {
-      count--
-      const minutes = Math.floor(count / 60).toString().padStart(2, '0')
-      const seconds = (count % 60).toString().padStart(2, '0')
-      const text = `${minutes}:${seconds}`
+      count--;
+      const minutes = Math.floor(count / 60).toString().padStart(2, '0');
+      const seconds = (count % 60).toString().padStart(2, '0');
+      const text = `${minutes}:${seconds}`;
       if (timer) {
-        timer.innerHTML = text
+        timer.innerHTML = text;
       }
       if (count <= 0) {
-        clearInterval(interval)
+        clearInterval(interval);
       }
-    }, 1000)
-  })
+    }, 1000);
+  });
 </script>
