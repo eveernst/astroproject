@@ -1,63 +1,46 @@
+<div class="timer-container">
+  <button class="start-button timer">Start</button>
+</div>
+
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #000;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-size: 20px;
-  }
-
-  h1 {
-    text-align: center;
-    color: #fff;
-    font-size: 36px;
-    margin-bottom: 20px;
-  }
-
-  .timer-container {
-    text-align: center;
-    margin-top: 20px;
-  }
-
   .timer {
+    position: relative;
     font-size: 64px; /* Aumentado el tamaño de la fuente */
     color: #ffcc00;
     margin-top: 10px;
   }
 
   .start-button {
-    padding: 15px 30px; /* Aumentado el tamaño del botón */
-    background-color: #fefa81;
-    color: #fff;
-    border: none;
-    border-radius: 8px; /* Aumentado el radio del borde */
-    cursor: pointer;
-    font-size: 20px; /* Aumentado el tamaño de la fuente */
-    transition: background-color 0.3s ease;
+    background-color: #333;
+    text-align: center;
+    border-radius: 50%;
+    height: 500px;
+    width: 500px;
   }
 
   .start-button:hover {
     background-color: #ffe135;
-    transform: :scale(1.05);
+    transform:scale(1.05);
+  }
+
+  .timer:hover{
+    color: #333;
   }
 </style>
 
-<div class="timer-container">
-  <h1>Timer</h1>
-  <div class="timer"></div>
-  <button class="start-button">Start</button>
-</div>
 
 <script>
   const button = document.querySelector('.start-button');
   const timer = document.querySelector('.timer');
+  let interval: NodeJS.Timeout;
+
   button?.addEventListener('click', () => {
+    if (interval) {
+      clearInterval(interval); // Detener el temporizador actual si está en funcionamiento
+    }
+    
     let count = 60 * 5;
-    const interval = setInterval(() => {
+    interval = setInterval(() => {
       count--;
       const minutes = Math.floor(count / 60).toString().padStart(2, '0');
       const seconds = (count % 60).toString().padStart(2, '0');
